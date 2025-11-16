@@ -14043,3 +14043,8 @@ html,
 body {
   overflow-x: hidden;
 }
+
+.hero {
+  width: 100% !important;
+  overflow: hidden;
+}
