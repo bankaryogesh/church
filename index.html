@@ -129,21 +129,21 @@
 							<div class="counter">
 								<span class="number d-block hours" id="hours">27</span>
 								<span class="caption">Hours</span>
-								
+
 							</div>
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-3 text-left">
 							<div class="counter">
 								<span class="number d-block minutes" id="minutes">51</span>
 								<span class="caption">Minutes</span>
-								
+
 							</div>
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-3 text-left">
 							<div class="counter">
 								<span class="number d-block seconds" id="seconds">51</span>
 								<span class="caption">Seconds</span>
-								
+
 							</div>
 						</div>
 					</div>
@@ -160,6 +160,41 @@
 
 		</div>
 	</div>
+
+
+	<!-- SERMON MODAL -->
+	<div id="sermonModal" class="modal-overlay">
+		<div class="modal-box">
+			<span class="close-btn" id="closeModal">&times;</span>
+
+			<h3 class="modal-title">Join This Sermon</h3>
+			<p class="modal-text">You are invited to join the upcoming sermon:</p>
+
+			<div class="modal-info">
+				<p><strong>Topic:</strong> We Must Be Doers of The Word Not Hearers Only</p>
+				<p><strong>Date:</strong> Jan 27, 2025</p>
+				<p><strong>Time:</strong> 10:00 AM</p>
+			</div>
+
+			<div class="modal-buttons">
+				<a href="https://meet.google.com/your-link" target="_blank" class="modal-btn main">Join Online</a>
+
+				<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sermon&dates=20250127T043000Z/20250127T053000Z&details=Sermon+Reminder"
+					target="_blank" class="modal-btn">
+					Add to Calendar
+				</a>
+
+				<a href="https://wa.me/919623448895?text=I%20want%20to%20join%20this%20sermon" target="_blank"
+					class="modal-btn">
+					Contact on WhatsApp
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- END MODAL -->
+
+
+
 	<!-- Recent Sermons countdown script-->
 
 	<script>
@@ -190,6 +225,29 @@
 	</script>
 
 	<!-- Recent Sermons countdown script-->
+	<!-- Recent Sermons Section modal popup-->
+
+	<script>
+		// Open Modal
+		document.querySelector(".btn.btn-secondary").addEventListener("click", function (e) {
+			e.preventDefault();
+			document.getElementById("sermonModal").style.display = "flex";
+		});
+
+		// Close Modal
+		document.getElementById("closeModal").onclick = function () {
+			document.getElementById("sermonModal").style.display = "none";
+		};
+
+		// Close when clicking outside modal
+		window.onclick = function (event) {
+			if (event.target == document.getElementById("sermonModal")) {
+				document.getElementById("sermonModal").style.display = "none";
+			}
+		};
+	</script>
+
+	<!-- Recent Sermons Section modal popup-->
 
 	<div class="section">
 		<div class="container">
