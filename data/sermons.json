@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "title": "Live by Faith Not by Sight",
+    "author": "James Smith",
+    "date": "10 Dec 2020",
+    "image": "assets/img/sermon1.jpg",
+    "content": "<p>Full sermon description or message here...</p>"
+  },
+  {
+    "id": 2,
+    "title": "Grace for Every Season",
+    "author": "Pastor John",
+    "date": "12 Dec 2020",
+    "image": "assets/img/sermon2.jpg",
+    "content": "<p>Full sermon description or message here...</p>"
+  },
+
+   {
+    "id": 3,
+    "title": "Grace for Every Season",
+    "author": "Pastor John",
+    "date": "12 Dec 2020",
+    "image": "assets/img/sermon2.jpg",
+    "content": "<p>Full sermon description or message here...</p>"
+  },
+
+   {
+    "id": 4,
+    "title": "Grace for Every Season",
+    "author": "Pastor John",
+    "date": "12 Dec 2020",
+    "image": "assets/img/sermon2.jpg",
+    "content": "<p>Full sermon description or message here...</p>"
+  },
+
+   {
+    "id": 5,
+    "title": "Grace for Every Season",
+    "author": "Pastor John",
+    "date": "12 Dec 2020",
+    "image": "assets/img/sermon2.jpg",
+    "content": "<p>Full sermon description or message here...</p>"
+  },
+
+   {
+    "id": 6,
+    "title": "Grace for Every Season",
+    "author": "Pastor John",
+    "date": "12 Dec 2020",
+    "image": "assets/img/sermon2.jpg",
+    "content": "<p>Full sermon description or message here...</p>"
+  }
+]

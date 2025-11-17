@@ -1,21 +1,22 @@
-
 <!doctype html>
 <html lang="en">
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<meta name="author" content="Untree.co">
+
+	<!-- <meta name="author" content="Untree.co"> -->
 	<link rel="shortcut icon" href="favicon.png">
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="bootstrap, bootstrap5" />
-	
+
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter&display=swap"
+		rel="stylesheet">
 
 
 	<link rel="stylesheet" href="fonts/icomoon/style.css">
@@ -28,7 +29,8 @@
 
 	<title>Church &mdash; Paster Nade</title>
 </head>
-<body >
+
+<body>
 
 	<div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
@@ -47,17 +49,17 @@
 				<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
 					<li><a href="index.html">Home</a></li>
 					<li class="has-children active">
-						<a href="sermons.html">Sermons</a>
+						<a href="sermon-single.html">Sermon</a>
 						<ul class="dropdown">
 							<li><a href="#">Sermons</a></li>
 							<li><a href="#">Sermons Single</a></li>
 							<li class="has-children">
-								<a href="#">Dropdown</a>
-								<ul class="dropdown">
+								<a href="sermon-single.html">Dropdown</a>
+								<!-- <ul class="dropdown">
 									<li><a href="#">Sub Menu One</a></li>
 									<li><a href="#">Sub Menu Two</a></li>
 									<li><a href="#">Sub Menu Three</a></li>
-								</ul>
+								</ul> -->
 							</li>
 						</ul>
 					</li>
@@ -67,19 +69,62 @@
 					<li class="cta-button"><a href="contact.html">Request a prayer</a></li>
 				</ul>
 
-				
 
-				<a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
+				<a href="#"
+					class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"
+					data-toggle="collapse" data-target="#main-navbar">
 					<span></span>
 				</a>
 
-				
+
 			</div>
 		</div>
 	</nav>
-	
-	
-	<div class="hero page-inner overlay" style="background-image: url('images/landscape-1.jpg'); ">
+
+
+	<!-- <!doctype html>
+	<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Sermon</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head> -->
+
+	<!-- <body> -->
+
+		<!-- <h1 id="title"></h1>
+		<p id="meta"></p>
+		<img id="image" style="width:100%;max-width:600px;">
+		<div id="content"></div> -->
+
+		<script>
+			const id = new URLSearchParams(window.location.search).get("id");
+
+			fetch("data/sermons.json")
+				.then(res => res.json())
+				.then(data => {
+					const sermon = data.find(s => s.id == id);
+
+					if (!sermon) {
+						document.body.innerHTML = "<h2>Sermon Not Found</h2>";
+						return;
+					}
+
+					document.getElementById("title").textContent = sermon.title;
+					document.getElementById("meta").textContent = `${sermon.date} • By ${sermon.author}`;
+					document.getElementById("image").src = sermon.image;
+					document.getElementById("content").innerHTML = sermon.content;
+				});
+		</script>
+
+	<!-- </body> -->
+
+	<!-- </html> -->
+
+
+
+	<!-- <div class="hero page-inner overlay" style="background-image: url('images/landscape-1.jpg'); ">
 
 		<div class="container">
 			<div class="row justify-content-center align-items-center">
@@ -98,14 +143,12 @@
 				</div>
 			</div>
 
-
 		</div>
-	</div>
+	</div> -->
 
 
-	
 
-	<div class="section">
+	<!-- <div class="section">
 		<div class="container">
 			<div class="row justify-content-center mb-5">
 				<div class="col-lg-7" data-aos="fade-up">
@@ -131,25 +174,21 @@
 
 					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
 
-
 					<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-
-					
+				
 					<p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
 					
 					<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-
-
-					
+			
 					<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
 
 					
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
-	<div class="section">
+	<!-- <div class="section">
 		<div class="container">
 			<div class="row mb-4 text-center">
 				<div class="col-lg-12" data-aos="fade-up">
@@ -193,10 +232,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
-	
 	<div class="site-footer bg-white">
 		<div class="container">
 			<div class="row">
@@ -204,7 +242,8 @@
 					<div class="widget">
 						<h3>Contact</h3>
 						<address>Jesus Loves Prayer Center, plot No.5, Bhajimandi Road,
-							 Near Sawangikar Hospital, Behind Soham Motors, Mukundwadi, N-2, Cidco, Aurangabad-431006, Maharashtra,INDIA.</address>
+							Near Sawangikar Hospital, Behind Soham Motors, Mukundwadi, N-2, Cidco, Aurangabad-431006,
+							Maharashtra,INDIA.</address>
 						<ul class="list-unstyled links">
 							<li><a href="tel://+91 7776837128">+91 7776837128</a></li>
 							<li><a href="tel://+91-7776837128">+91 7776837128</a></li>
@@ -285,6 +324,7 @@
 	<script src="js/counter.js"></script>
 	<script src="js/custom.js"></script>
 
-	
+
 </body>
+
 </html>
