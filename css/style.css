@@ -14056,7 +14056,7 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   display: none;
   justify-content: center;
   align-items: center;
@@ -14112,6 +14112,118 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* BACKGROUND OF EACH SECTION */
+.glass-section {
+  padding: 100px 0;
+  background: url("https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat fixed;
+}
+
+/* MAIN WRAPPER WITH GLASS EFFECT */
+.glass-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 40px;
+  border-radius: 25px;
+
+  /* GLASS EFFECT */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* REVERSE ALTERNATING SECTIONS */
+.glass-wrapper.reverse {
+  flex-direction: row-reverse;
+}
+
+/* FIX: PREVENT IMAGE FROM SHRINKING */
+.glass-image {
+  flex: 0 0 45%;
+  /* Image always takes 45% width */
+}
+
+.glass-text {
+  flex: 1;
+  /* Text uses remaining space */
+}
+
+/* IMAGE */
+.glass-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease;
+  object-fit: cover;
+  /* Prevent stretch/compression */
+}
+
+.glass-image img:hover {
+  transform: scale(1.04);
+}
+
+/* TEXT */
+.glass-text h2 {
+  font-size: 2.1rem;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.glass-text p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #f1f1f1;
+}
+
+/* FADE-IN ANIMATION */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1.2s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .glass-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .glass-wrapper.reverse {
+    flex-direction: column;
+  }
+
+  /* Image takes full width on mobile */
+  .glass-image {
+    flex: unset;
+    width: 100%;
+  }
+
+  .glass-text h2 {
+    font-size: 1.8rem;
+  }
 }
