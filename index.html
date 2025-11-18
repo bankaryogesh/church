@@ -189,12 +189,14 @@
 
 			<h3 class="modal-title">Join This Sermon</h3>
 			<p class="modal-text">You are invited to join the upcoming sermon:</p>
-
+	
 			<div class="modal-info">
 				<p><strong>Topic:</strong> We Must Be Doers of The Word Not Hearers Only</p>
-				<p><strong>Date:</strong> Jan 27, 2025</p>
-				<p><strong>Time:</strong> 10:00 AM</p>
+				<p><strong>Date:</strong> <span id="modalDate"></span></p>
+				<p><strong>Time:</strong> <span id="modalTime"></span></p>
 			</div>
+
+
 
 			<div class="modal-buttons">
 				<a href="https://meet.google.com/your-link" target="_blank" class="modal-btn main">Join Online</a>
@@ -213,13 +215,39 @@
 	</div>
 	<!-- END MODAL -->
 
-
-
-	<!-- Recent Sermons countdown script-->
-
 	<script>
+
 		// Set your sermon date & time here (YYYY-MM-DD HH:MM:SS)
-		const targetDate = new Date("2025-12-27 10:00:00").getTime();
+		const targetDateString = "2025-12-27 10:00:00";
+		const targetDate = new Date(targetDateString).getTime(); // for countdown
+		const targetDateObj = new Date(targetDateString);        // for modal display
+
+
+		/* ------------------------------
+		   1) UPDATE MODAL DATE & TIME
+		   ------------------------------ */
+
+		// Format readable date
+		const dateOptions = { year: "numeric", month: "short", day: "numeric" };
+		const formattedDate = targetDateObj.toLocaleDateString("en-US", dateOptions);
+
+		// Format readable time
+		let h = targetDateObj.getHours();
+		let m = targetDateObj.getMinutes().toString().padStart(2, "0");
+		let ampm = h >= 12 ? "PM" : "AM";
+		h = h % 12 || 12;
+
+		const formattedTime = `${h}:${m} ${ampm}`;
+
+		// Insert into modal
+		document.getElementById("modalDate").innerText = formattedDate;
+		document.getElementById("modalTime").innerText = formattedTime;
+
+
+
+		/* ------------------------------
+		   2) COUNTDOWN TIMER
+		   ------------------------------ */
 
 		setInterval(function () {
 			let now = new Date().getTime();
@@ -230,21 +258,17 @@
 			let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 			let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-			document.getElementById("days").innerHTML = days;
-			document.getElementById("hours").innerHTML = hours;
-			document.getElementById("minutes").innerHTML = minutes;
-			document.getElementById("seconds").innerHTML = seconds;
+			// Insert into countdown UI
+			document.getElementById("days").innerHTML = days < 0 ? "00" : days;
+			document.getElementById("hours").innerHTML = hours < 0 ? "00" : hours;
+			document.getElementById("minutes").innerHTML = minutes < 0 ? "00" : minutes;
+			document.getElementById("seconds").innerHTML = seconds < 0 ? "00" : seconds;
 
-			if (diff < 0) {
-				document.getElementById("days").innerHTML =
-					document.getElementById("hours").innerHTML =
-					document.getElementById("minutes").innerHTML =
-					document.getElementById("seconds").innerHTML = "00";
-			}
 		}, 1000);
-	</script>
 
+	</script>
 	<!-- Recent Sermons countdown script-->
+
 	<!-- Recent Sermons Section modal popup-->
 
 	<script>
@@ -266,6 +290,7 @@
 			}
 		};
 	</script>
+
 
 	<!-- Recent Sermons Section modal popup-->
 
