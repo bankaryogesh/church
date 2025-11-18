@@ -14263,7 +14263,7 @@ body {
     opacity: 0;
     transform: translateX(-40px);
     animation: slideIn 0.8s ease-out forwards;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 @keyframes slideIn {
