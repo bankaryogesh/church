@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="css/aos.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<title>Church &mdash; Paster Nade</title>
+	<title>Jesus Loves Ministries &mdash; Paster Nade</title>
 </head>
 
 <body>
@@ -48,7 +48,7 @@
 
 				<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
 					<li class="active"><a href="index.html">Home</a></li>
-					<li><a href="sermons.html">Sermons</a></li>					
+					<li><a href="sermons.html">Sermons</a></li>
 					<li><a href="ministry.html">Ministries</a></li>
 					<li><a href="events.html">Events</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -70,25 +70,58 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-between">
 				<div class="col-lg-5 me-auto text-start pe-lg-5">
-					<div class="intro-text">
-						<div class="mb-4">
-							<h1 data-aos="fade-left" class="hero-heading">Arise &amp; Shine</h1>
+
+					<div class="banner">
+						<div class="banner-left">
+							<div class="banner-content" id="bannerContent">
+								<h1 id="bannerTitle">Arise & Shine</h1>
+								<p id="bannerDesc">A small river named Duden flows by their place...</p>
+								<a id="bannerBtn" href="#" class="btn">ATTEND SERMON</a>
+							</div>
 						</div>
-						<div class="">
-							<p class="mb-5 opacity-5" data-aos="fade-left" data-aos-delay="200">A small river named
-								Duden flows by their place and supplies ("Paster nade please add your thoughs here")</p>
-							<p data-aos="fade-left" data-aos-delay="300"><a href="contact.html" class="btn btn-primary">Attend
-									sermon</a></p>
+
+						<div class="banner-right">
+							<video src="your-video.mp4" autoplay muted loop></video>
 						</div>
+
 					</div>
 				</div>
 
+				<!-- <div class="col-lg-7" data-aos="fade-left">
+					<div class="col-lg-7" data-aos="fade-left"> -->
+				<!-- <div class="video-wrapper">
+							<iframe src="https://www.youtube.com/embed/Ts8MIy_RUDg?rel=0&controls=1"
+								class="banner-video"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen>
+							</iframe>
+						</div> -->
+
 				<div class="col-lg-7" data-aos="fade-left">
-					<a href="https://www.youtube.com/watch?v=Ts8MIy_RUDg&t=113s" class="video-bg glightbox">
-						<span class="icon"><span class="icon-play"></span></span>
-						<img src="images/landscape-2.jpg" alt="Image" class="img-fluid rounded">
-					</a>
+
+					<div class="video-container">
+
+						<!-- Thumbnail Image -->
+						<img src="images/landscape-2.jpg" class="video-thumb" id="videoThumb" alt="Banner Video">
+
+						<!-- Play Button -->
+						<div class="play-icon" id="playBtn">▶</div>
+
+						<!-- YouTube Video (Hidden Initially) -->
+						<iframe id="bannerVideo" class="video-iframe"
+							src="https://www.youtube.com/embed/Ts8MIy_RUDg?rel=0&controls=1"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
+							allowfullscreen>
+						</iframe>
+
+					</div>
+
 				</div>
+
+
+				<!-- </div>
+
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -282,7 +315,7 @@
 								Consonantia</p>
 							<p><a href="events.html#section4" class="btn btn-primary btn-sm">Read more</a></p>
 						</div>
-					</div> 	
+					</div>
 				</div>
 			</div>
 		</div>
@@ -749,6 +782,75 @@
 		</div>
 	</div>
 
+	<!--banner txt slider-->
+
+	<script>
+		const bannerData = [
+			{
+				title: "Arise & Shine",
+				desc: "A small river named Duden flows by their place and supplies...",
+				btnText: "ATTEND SERMON",
+				btnLink: "#sermon"
+			},
+			{
+				title: "Join Us in Worship",
+				desc: "Experience the power of prayer and unity every Sunday.",
+				btnText: "JOIN NOW",
+				btnLink: "#join"
+			},
+			{
+				title: "Faith & Hope",
+				desc: "Let your heart be filled with peace, love, and purpose.",
+				btnText: "READ MORE",
+				btnLink: "#read"
+			}
+
+		];
+
+		let index = 0;
+
+		function rotateBanner() {
+			const contentBox = document.getElementById("bannerContent");
+
+			// Restart animation (remove → reflow → add)
+			contentBox.classList.remove("banner-content");
+			void contentBox.offsetWidth; // forcing reflow
+			contentBox.classList.add("banner-content");
+
+			// Change text
+			document.getElementById("bannerTitle").textContent = bannerData[index].title;
+			document.getElementById("bannerDesc").textContent = bannerData[index].desc;
+			const btn = document.getElementById("bannerBtn");
+			btn.textContent = bannerData[index].btnText;
+			btn.href = bannerData[index].btnLink;
+
+			// Move to next item
+			index = (index + 1) % bannerData.length;
+		}
+
+		// Start rotating every 3 seconds
+		setInterval(rotateBanner, 3000);
+	</script>
+
+	<!--banner video script -->
+
+	<script>
+		document.getElementById("playBtn").addEventListener("click", loadVideo);
+		document.getElementById("videoThumb").addEventListener("click", loadVideo);
+
+		function loadVideo() {
+			// Hide the thumbnail + play button
+			document.getElementById("videoThumb").style.display = "none";
+			document.getElementById("playBtn").style.display = "none";
+
+			// Load the YouTube embed with autoplay
+			document.getElementById("bannerVideo").src =
+				"https://www.youtube.com/embed/Ts8MIy_RUDg?autoplay=1&rel=0";
+
+			// Show the video
+			document.getElementById("bannerVideo").style.display = "block";
+		}
+	</script>
 
 
 
