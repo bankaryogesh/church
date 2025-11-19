@@ -14348,3 +14348,34 @@ body {
   cursor: pointer;
   pointer-events: auto;
 }
+
+/* nav bar static to sticky */
+
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+/* Default navbar (transparent) */
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: transparent;
+    transition: background 0.3s ease, padding 0.3s ease;
+}
+
+/* Scroll style */
+.site-nav.scrolled {
+    background: rgba(0, 0, 0, 0.4);  /* transparent black */
+    backdrop-filter: blur(4px);       /* optional: glass effect */
+}
+.site-nav a {
+    color: white !important;
+}
+
