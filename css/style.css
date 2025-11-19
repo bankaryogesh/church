@@ -14462,3 +14462,85 @@ body {
     }
 }
 
+/* social media icons */
+
+/* --- social icons: reset + centered --- */
+.colorful-social {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+/* circle link */
+.colorful-social li a {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;                 /* use flex centering (robust) */
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;  /* allow glyph to render fully */
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* color backgrounds */
+.colorful-social li:nth-child(1) a { background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); }
+.colorful-social li:nth-child(2) a { background: #1DA1F2; }
+.colorful-social li:nth-child(3) a { background: #1877F2; }
+.colorful-social li:nth-child(4) a { background: #0A66C2; }
+
+/* Hover */
+.colorful-social li a:hover { transform: translateY(-4px) scale(1.06); box-shadow: 0 8px 18px rgba(0,0,0,.18); }
+
+/* --- Force icon appearance and remove stray backgrounds --- */
+.colorful-social li a i,
+.colorful-social li a svg {
+  display: block;            /* ensure block sits perfectly inside flex container */
+  color: #fff !important;    /* white glyph */
+  background: transparent !important;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  font-size: 20px;          /* adjust if you want bigger/smaller */
+  padding: 0;
+  margin: 0;
+  transform: none !important;
+  -webkit-text-stroke: 0 !important; /* remove stroked outlines from other rules */
+  text-shadow: none !important;
+}
+
+/* in case your template applied a pseudo-element or extra span */
+.colorful-social li a * { background: transparent !important; }
+
+/* small devices */
+@media (max-width:480px){
+  .colorful-social li a { width:40px; height:40px; }
+  .colorful-social li a i { font-size:18px; }
+}
+
+/* FORCE center FontAwesome icons inside circle */
+.colorful-social li a i {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #fff !important;
+    font-size: 20px !important;
+
+    line-height: 1 !important;
+    vertical-align: middle !important;
+
+    position: static !important;
+}
