@@ -764,6 +764,30 @@
 				</div>
 			</div> -->
 		</div> <!-- /.container -->
+
+		<!-- Visitor Counter Box -->
+
+		<div class="visitor-center">
+			<div class="visitor-counter-box">
+				<div class="vc-icon">
+					<i class="ion-ios-people"></i>
+				</div>
+				<div class="vc-text">
+					<span class="vc-label">Visitors</span>
+					<span class="vc-number" id="visitorCounter">0</span>
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+			fetch('https://api.countapi.xyz/hit/bankaryogesh.github.io/Church/visitors')
+				.then(response => response.json())
+				.then(data => {
+					document.getElementById('visitorCounter').innerText = data.value;
+				});
+		</script>
+
 	</div> <!-- /.site-footer -->
 
 
@@ -845,8 +869,8 @@
 		}
 	</script>
 
-<!--	navbar-->
-	
+	<!--	navbar-->
+
 	<script>
 		window.addEventListener("scroll", function () {
 			const nav = document.querySelector(".site-nav");
@@ -867,6 +891,10 @@
 	<script src="js/navbar.js"></script>
 	<script src="js/counter.js"></script>
 	<script src="js/custom.js"></script>
+
+
+
+
 
 
 </body>

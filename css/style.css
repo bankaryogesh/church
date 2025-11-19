@@ -14379,3 +14379,86 @@ body {
     color: white !important;
 }
 
+/* visitor counter  */
+
+/* Center wrapper */
+.visitor-center {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Smaller compact counter box */
+.visitor-counter-box {
+    background: rgb(55, 122, 114);
+    padding: 10px 30px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 14px rgba(55, 122, 114, 0.4);
+    animation: fadeIn 0.8s ease-out;
+    transform: scale(0.95); /* slightly smaller look */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Small icon */
+.vc-icon i {
+    font-size: 20px;
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.85; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Text area */
+.vc-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.vc-label {
+    font-size: 11px;
+    opacity: 0.85;
+    margin-bottom: 2px;
+    white-space: nowrap;   /* prevents breaking into "Vis itors" */
+    letter-spacing: 0;     /* reset spacing */
+}
+
+.vc-number {
+    font-size: 18px;
+    font-weight: 600;
+    animation: countpop 0.6s ease;
+}
+
+@keyframes countpop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .visitor-counter-box {
+        padding: 8px 14px;
+        gap: 8px;
+    }
+    .vc-icon i {
+        font-size: 22px;
+    }
+    .vc-number {
+        font-size: 16px;
+    }
+}
+
