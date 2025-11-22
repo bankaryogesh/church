@@ -46,13 +46,16 @@
 				<a href="index.html" class="logo m-0 float-left">Jesus loves Ministries</a>
 
 				<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-					<li class="active"><a href="index.html">Home</a></li>
+					<li class="active"><a href="index.html">Welcome</a></li>
 					<!-- <li><a href="sermons.html">Sermons</a></li> -->
 					<!-- <li><a href="ministry.html">Ministries</a></li> -->
 					<li><a href="ministries.html">Ministries</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="contact.html">Reach out</a></li>
 
-					<li class="cta-button"><a href="contact.html">Fund the Church</a></li>
+
+
+
+					<li class="cta-button"><a href="javascript:void(0)" id="fundBtn">Fund the Church</a></li>
 				</ul>
 
 
@@ -301,6 +304,192 @@
 			}
 		});
 	</script>
+
+
+
+	<!-- fund the church-->
+
+	<!-- ====== FUND THE CHURCH: Button (put this in your nav) ====== -->
+	<li><a href="javascript:void(0)" id="fundBtn">Fund the Church</a></li>
+
+	<!-- ====== MODAL HTML ====== -->
+	<div id="fundModal" class="fc-modal" aria-hidden="true">
+		<div class="fc-modal-inner" role="dialog" aria-modal="true" aria-labelledby="fcTitle">
+			<button class="fc-close" aria-label="Close modal">&times;</button>
+
+			<div class="fc-grid">
+				<!-- LEFT: Form -->
+				<div class="fc-left">
+					<h2 id="fcTitle">Fund the Church</h2>
+					<p class="muted">Enter donation details and scan QR to pay.</p>
+
+					<!-- Google Form will receive this POST (keeps your Sheet updated) -->
+					<form id="fundForm"
+						action="https://docs.google.com/forms/d/e/1FAIpQLSfOybLEmcsJEXKZXWH32SNIEzsejh9FCQqXqRJL-AaHoLsmew/formResponse"
+						method="POST" target="hidden_iframe">
+
+						<!-- Donor Name -->
+						<label for="donorName">Donor Name</label>
+						<input id="donorName" name="entry.567710395" type="text" required placeholder="Full name">
+
+						<!-- Transaction ID -->
+						<label for="txId">Transaction ID</label>
+						<input id="txId" name="entry.881738914" type="text" required placeholder="UPI / Bank txn id">
+
+						<!-- Phone -->
+						<label for="phone">Phone Number</label>
+						<input id="phone" name="entry.1029506650" type="tel" required placeholder="10-digit phone">
+
+						<div class="fc-actions">
+							<button type="submit" id="submitBtn" class="btn-primary">Submit Donation</button>
+							<button type="button" id="cancelBtn" class="btn-ghost">Cancel</button>
+						</div>
+					</form>
+
+					<!-- Hidden iframe ensures Google Form submission does not redirect -->
+					<iframe name="hidden_iframe" style="display:none;"></iframe>
+				</div>
+
+				<!-- RIGHT: QR and info -->
+				<div class="fc-right">
+					<div class="qr-card">
+						<!-- Replace this src with your real QR image URL -->
+						<img id="qrImage" src="images/person_4.jpg" alt="Scan to pay (replace with your QR)">
+						<p class="qr-caption">Scan to pay (PhonePe / BharatPe / Google Pay)</p>
+						<!-- <button id="replaceQr" class="btn-link">Replace QR</button> -->
+					</div>
+
+					<div class="help-box">
+						<strong>How to use</strong>
+						<ol>
+							<li>Scan the QR and complete payment.</li>
+							<li>Enter the transaction ID above and submit.</li>
+							<li>We’ll save the record and notify the admin by email.</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ====== SUCCESS POPUP HTML ====== -->
+	<div id="successPopup" class="success-popup" aria-hidden="true">
+		<div class="success-inner">
+			<div class="checkmark">
+				<svg viewBox="0 0 52 52">
+					<path d="M14 27 L22 34 L38 16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"
+						stroke-linejoin="round" />
+				</svg>
+			</div>
+			<h3>Thank you!</h3>
+			<p>Your donation details have been received.</p>
+			<button id="successClose" class="btn-primary">Close</button>
+		</div>
+	</div>
+
+
+	<!-- ====== EmailJS SDK (replace with current SDK link from EmailJS docs if updated) ====== -->
+	<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+	<!-- ====== FUNCTIONAL JS ====== -->
+	<script>
+		// ---------- CONFIG: replace these with YOUR EmailJS values ----------
+		const EMAILJS_SERVICE = "SERVICE_ID";
+		const EMAILJS_TEMPLATE = "TEMPLATE_ID";
+		const EMAILJS_PUBLIC_KEY = "PUBLIC_KEY";
+		const ADMIN_EMAIL = "bankayogesh20@gmail.com";
+
+		// Initialize EmailJS
+		if (window.emailjs) emailjs.init(EMAILJS_PUBLIC_KEY);
+
+		// Modal controls
+		const fundBtn = document.getElementById("fundBtn");
+		const fundModal = document.getElementById("fundModal");
+		const closeModalBtn = document.querySelector(".fc-close");
+		const cancelBtn = document.getElementById("cancelBtn");
+		const fundForm = document.getElementById("fundForm");
+		const submitBtn = document.getElementById("submitBtn");
+		const successPopup = document.getElementById("successPopup");
+		const successClose = document.getElementById("successClose");
+
+		function openModal() {
+			fundModal.setAttribute("aria-hidden", "false");
+		}
+
+		function closeModal() {
+			fundModal.setAttribute("aria-hidden", "true");
+		}
+
+		fundBtn.addEventListener("click", openModal);
+		closeModalBtn.addEventListener("click", closeModal);
+		cancelBtn.addEventListener("click", closeModal);
+		window.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+		// On form submit: send EmailJS + let Google Form submit
+		fundForm.addEventListener("submit", function () {
+
+			const donor = document.getElementById("donorName").value.trim();
+			const tx = document.getElementById("txId").value.trim();
+			const phone = document.getElementById("phone").value.trim();
+
+			// Disable button while submitting
+			submitBtn.disabled = true;
+			submitBtn.textContent = "Processing...";
+
+			// Email parameters
+			const templateParams = {
+				donor_name: donor,
+				transaction_id: tx,
+				phone: phone,
+				to_email: ADMIN_EMAIL
+			};
+
+			// If EmailJS is configured
+			if (
+				EMAILJS_SERVICE !== "SERVICE_ID" &&
+				EMAILJS_TEMPLATE !== "TEMPLATE_ID" &&
+				EMAILJS_PUBLIC_KEY !== "PUBLIC_KEY"
+			) {
+				emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams)
+					.finally(() => showSuccessAndReset());
+			} else {
+				// No EmailJS — just show success
+				setTimeout(showSuccessAndReset, 600);
+			}
+
+			// DO NOT PREVENT DEFAULT (Google Form requires natural submit)
+		});
+
+		// Success popup logic
+		function showSuccessAndReset() {
+
+			submitBtn.disabled = false;
+			submitBtn.textContent = "Submit Donation";
+
+			// Hide form modal
+			closeModal();
+
+			// Show success popup
+			successPopup.setAttribute("aria-hidden", "false");
+
+			// Auto close after 4 seconds
+			setTimeout(() => {
+				successPopup.setAttribute("aria-hidden", "true");
+			}, 4000);
+
+			// Reset fields
+			document.getElementById("donorName").value = "";
+			document.getElementById("txId").value = "";
+			document.getElementById("phone").value = "";
+		}
+
+		successClose.addEventListener("click", () => {
+			successPopup.setAttribute("aria-hidden", "true");
+		});
+	</script>
+
+
+
 
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/tiny-slider.js"></script>
