@@ -15009,3 +15009,37 @@ input::placeholder {
     box-shadow: 0 5px 16px rgba(0,0,0,0.15);
     color: #fff;
 }
+
+/* --- Mobile Fixes for Fund Modal --- */
+@media (max-width: 768px) {
+
+    .fc-modal-inner {
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    .fc-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .fc-right {
+        order: 1;
+        margin-top: 20px;
+    }
+}
+
+.fc-modal[aria-hidden="false"] {
+    position: fixed;
+    overflow-y: auto;
+}
+
+@media (max-width: 480px) {
+    .fc-modal-inner {
+        padding: 18px;
+    }
+
+    .qr-card img {
+        max-width: 160px;
+    }
+}
