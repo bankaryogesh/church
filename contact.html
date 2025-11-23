@@ -52,7 +52,9 @@
 					<li><a href="ministries.html">Ministries</a></li>
 					<li><a href="contact.html">Reach out</a></li>
 
-					<li class="cta-button"><a href="javascript:void(0)" id="fundBtn">Fund the Church</a></li>
+					<li class="cta-button">
+						<a href="javascript:void(0)" id="fundBtn" data-open="fundModal">Fund the Church</a>
+					</li>
 				</ul>
 
 				<a href="#"
@@ -450,6 +452,20 @@
 
 		successClose.addEventListener("click", () => {
 			successPopup.setAttribute("aria-hidden", "true");
+		});
+	</script>
+
+	<script>
+		document.addEventListener("click", function (e) {
+			const trigger = e.target.closest("[data-open='fundModal']");
+			if (!trigger) return;
+
+			e.preventDefault();
+
+			const fundModal = document.getElementById("fundModal");
+			if (fundModal) {
+				fundModal.setAttribute("aria-hidden", "false");
+			}
 		});
 	</script>
 
